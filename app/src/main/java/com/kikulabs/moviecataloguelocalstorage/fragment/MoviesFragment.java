@@ -1,11 +1,18 @@
 package com.kikulabs.moviecataloguelocalstorage.fragment;
 
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -39,6 +46,7 @@ public class MoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
+        setHasOptionsMenu(true);
 
         recyclerMovie = view.findViewById(R.id.recyclerMovie);
         recyclerMovie.setHasFixedSize(true);
@@ -77,6 +85,47 @@ public class MoviesFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+
+        moviesViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        if (searchManager != null) {
+            final SearchView searchView = (SearchView) (menu.findItem(R.id.action_search)).getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            searchView.setQueryHint(getResources().getString(R.string.search_hint));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    Log.i("onQueryTextChange", newText);
+                    if (newText.length() == 0) {
+                        moviesViewModel.setMovies("EXTRA_MOVIE");
+                    } else {
+                        moviesViewModel.searchMovies(newText);
+                    }
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Log.i("onQueryTextSubmit", query);
+
+                    return true;
+                }
+
+            });
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

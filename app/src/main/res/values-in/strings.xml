@@ -19,4 +19,6 @@
     <string name="failed">Gagal menambahkan ke Favorit</string>
     <string name="removed">Dihapus dari Favorit</string>
     <string name="nodata">Saat ini tidak ada data</string>
+    <string name="search">Cari</string>
+    <string name="search_hint">Cari disini...</string>
 </resources>

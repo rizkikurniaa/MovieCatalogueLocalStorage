@@ -18,4 +18,6 @@
     <string name="failed">Failed to add to favorites</string>
     <string name="removed">Removed from favorites</string>
     <string name="nodata">There is no data at the moment</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search here...</string>
 </resources>

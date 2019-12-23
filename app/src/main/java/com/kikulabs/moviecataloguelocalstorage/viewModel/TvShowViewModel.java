@@ -65,8 +65,52 @@ public class TvShowViewModel extends ViewModel {
                     }
                 });
 
+    }
+
+    public void searchTvShow(final String inputUser) {
+
+        final ArrayList<MoviesAndTvData> listItems = new ArrayList<>();
+        String url = "https://api.themoviedb.org/3/search/tv?api_key=" + apiKey + "&language=en-US&query="+ inputUser;
+
+        AndroidNetworking.get(url)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Sukses", "onResponse: " + response);
+
+                        {
+
+                            try {
+                                JSONArray datalist = response.getJSONArray("results");
+                                for (int i = 0; i < datalist.length(); i++) {
+                                    JSONObject data = datalist.getJSONObject(i);
+                                    MoviesAndTvData tvshowItems = new MoviesAndTvData();
+                                    tvshowItems.setTitle(data.getString("original_name"));
+                                    tvshowItems.setPoster(data.getString("poster_path"));
+                                    tvshowItems.setReleaseDate(data.getString("first_air_date"));
+                                    tvshowItems.setVoteAverage(data.getString("vote_average"));
+                                    tvshowItems.setLanguage(data.getString("original_language"));
+                                    tvshowItems.setOverview(data.getString("overview"));
+                                    listItems.add(tvshowItems);
+
+                                }
+                                listTvShow.postValue(listItems);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        Log.d("Error", "onError: " + error);
+                    }
+                });
 
     }
+
 
     public LiveData<ArrayList<MoviesAndTvData>> getTvShow() {
         return listTvShow;

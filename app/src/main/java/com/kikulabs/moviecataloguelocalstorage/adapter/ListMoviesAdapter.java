@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.kikulabs.moviecataloguelocalstorage.R;
 import com.kikulabs.moviecataloguelocalstorage.activity.DetailMoviesActivity;
+import com.kikulabs.moviecataloguelocalstorage.method.DateChange;
 import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
 
 import java.util.ArrayList;
@@ -77,8 +78,15 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
 
         void bind(MoviesAndTvData moviesAndTvData) {
             String url_image = "https://image.tmdb.org/t/p/w185" + moviesAndTvData.getPoster();
+            String releaseDate = moviesAndTvData.getReleaseDate();
             tvTitle.setText(moviesAndTvData.getTitle());
-            tvDate.setText(moviesAndTvData.getReleaseDate());
+            DateChange dateChange = new DateChange();
+            if (releaseDate != null) {
+                String release = dateChange.changeFormatDate(releaseDate);
+                tvDate.setText(release);
+            } else {
+                tvDate.setText(releaseDate);
+            }
             tvRate.setText(moviesAndTvData.getVoteAverage());
 
             Glide.with(itemView.getContext())

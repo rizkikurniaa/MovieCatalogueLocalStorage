@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="favorite">Favorit</string>
+    <string name="movieandtvshow"><![CDATA[Film & Acara Tv]]></string>
+    <string name="tab_movie">Film</string>
+    <string name="tab_tv_show">Acara Tv</string>
+    <string name="movie_title">Judul Film</string>
+    <string name="movie_release">Tanggal Rilis Film</string>
+    <string name="vote">Penilaian</string>
+    <string name="tvshow_title">Judul Acara Tv</string>
+    <string name="tvshow_date">Tanggal Rilis</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="rating">Penilaian</string>
+    <string name="language">Bahasa</string>
+    <string name="overview">Sinopsis</string>
+    <string name="change_language_settings">Ganti Bahasa</string>
+    <string name="success">Ditambahkan ke Favorit</string>
+    <string name="failed">Gagal menambahkan ke Favorit</string>
+    <string name="removed">Dihapus dari Favorit</string>
+    <string name="nodata">Saat ini tidak ada data</string>
+</resources>

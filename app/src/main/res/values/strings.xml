@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="favorite">Favorite</string>
+    <string name="movieandtvshow"><![CDATA[Movie & Tv Show]]></string>
+    <string name="tab_movie">Movies</string>
+    <string name="tab_tv_show">Tv Show</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_release">Movie release date</string>
+    <string name="vote">Rating</string>
+    <string name="tvshow_title">Tv Show Title</string>
+    <string name="tvshow_date">Release Date</string>
+    <string name="release_date">Release Date</string>
+    <string name="rating">Rating</string>
+    <string name="language">Language</string>
+    <string name="overview">Overview</string>
+    <string name="change_language_settings">Change Language</string>
+    <string name="success">Added to favorites</string>
+    <string name="failed">Failed to add to favorites</string>
+    <string name="removed">Removed from favorites</string>
+    <string name="nodata">There is no data at the moment</string>
+</resources>

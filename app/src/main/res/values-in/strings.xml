@@ -21,4 +21,9 @@
     <string name="nodata">Saat ini tidak ada data</string>
     <string name="search">Cari</string>
     <string name="search_hint">Cari disini...</string>
+    <string name="aboutmovies">Tentang Film</string>
+    <string name="abouttvshow">Tentang Acara Tv</string>
+    <string name="appwidget_text">Film Favorit Mu</string>
+    <string name="add_widget">Tambahkan Widget</string>
+    <string name="empty_text">Tidak Ada Film</string>
 </resources>

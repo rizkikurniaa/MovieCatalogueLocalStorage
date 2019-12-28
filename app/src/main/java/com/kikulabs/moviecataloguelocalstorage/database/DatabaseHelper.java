@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static String DATABASE_NAME = "dbmoviestvshow";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -19,12 +19,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
 
             DatabaseContract.TABLE_MOVIES,
             DatabaseContract.MoviesColumns._ID,
             DatabaseContract.MoviesColumns.TITLE,
             DatabaseContract.MoviesColumns.POSTER,
+            DatabaseContract.MoviesColumns.BG,
             DatabaseContract.MoviesColumns.RELEASEDATE,
             DatabaseContract.MoviesColumns.VOTEAVERAGE,
             DatabaseContract.MoviesColumns.LANGUAGE,
@@ -38,12 +40,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
 
             DatabaseContract.TABLE_TVSHOW,
             DatabaseContract.MoviesColumns._ID,
             DatabaseContract.MoviesColumns.TITLE,
             DatabaseContract.MoviesColumns.POSTER,
+            DatabaseContract.MoviesColumns.BG,
             DatabaseContract.MoviesColumns.RELEASEDATE,
             DatabaseContract.MoviesColumns.VOTEAVERAGE,
             DatabaseContract.MoviesColumns.LANGUAGE,

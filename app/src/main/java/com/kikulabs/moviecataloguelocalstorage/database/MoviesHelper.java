@@ -20,7 +20,7 @@ public class MoviesHelper {
     private static MoviesHelper INSTANCE;
     private static SQLiteDatabase database;
 
-    private MoviesHelper(Context context) {
+    public MoviesHelper(Context context) {
         dataBaseHelper = new DatabaseHelper(context);
     }
 
@@ -56,10 +56,11 @@ public class MoviesHelper {
                 mItem.setId(cursor.getInt(0));
                 mItem.setTitle(String.valueOf(cursor.getString(1)));
                 mItem.setPoster(String.valueOf(cursor.getString(2)));
-                mItem.setReleaseDate(String.valueOf(cursor.getString(3)));
-                mItem.setVoteAverage(String.valueOf(cursor.getString(4)));
-                mItem.setLanguage(String.valueOf(cursor.getString(5)));
-                mItem.setOverview(String.valueOf(cursor.getString(6)));
+                mItem.setBackdrop(String.valueOf(cursor.getString(3)));
+                mItem.setReleaseDate(String.valueOf(cursor.getString(4)));
+                mItem.setVoteAverage(String.valueOf(cursor.getString(5)));
+                mItem.setLanguage(String.valueOf(cursor.getString(6)));
+                mItem.setOverview(String.valueOf(cursor.getString(7)));
                 items.add(mItem);
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
@@ -87,6 +88,7 @@ public class MoviesHelper {
         ContentValues args = new ContentValues();
         args.put(DatabaseContract.MoviesColumns.TITLE, moviesAndTvData.getTitle());
         args.put(DatabaseContract.MoviesColumns.POSTER, moviesAndTvData.getPoster());
+        args.put(DatabaseContract.MoviesColumns.BG, moviesAndTvData.getBackdrop());
         args.put(DatabaseContract.MoviesColumns.RELEASEDATE, moviesAndTvData.getReleaseDate());
         args.put(DatabaseContract.MoviesColumns.VOTEAVERAGE, moviesAndTvData.getVoteAverage());
         args.put(DatabaseContract.MoviesColumns.LANGUAGE, moviesAndTvData.getLanguage());

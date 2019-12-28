@@ -20,4 +20,9 @@
     <string name="nodata">There is no data at the moment</string>
     <string name="search">Search</string>
     <string name="search_hint">Search here...</string>
+    <string name="aboutmovies">About Movies</string>
+    <string name="abouttvshow">About Tv Show</string>
+    <string name="appwidget_text">Your Favorite Movies</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_text">Empty Movie</string>
 </resources>

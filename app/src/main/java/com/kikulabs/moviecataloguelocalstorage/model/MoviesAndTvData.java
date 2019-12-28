@@ -1,10 +1,17 @@
 package com.kikulabs.moviecataloguelocalstorage.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract;
+
+import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.getColumnInt;
+import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.getColumnString;
+
 public class MoviesAndTvData implements Parcelable {
     private String poster;
+    private String backdrop;
     private String title;
     private String releaseDate;
     private String voteAverage;
@@ -14,12 +21,27 @@ public class MoviesAndTvData implements Parcelable {
 
     protected MoviesAndTvData(Parcel in) {
         poster = in.readString();
+        backdrop = in.readString();
         title = in.readString();
         releaseDate = in.readString();
         voteAverage = in.readString();
         language = in.readString();
         overview = in.readString();
         id = in.readInt();
+    }
+
+    public MoviesAndTvData() {
+    }
+
+    public MoviesAndTvData(Cursor cursor) {
+        this.id = getColumnInt(cursor, DatabaseContract.MoviesColumns._ID);
+        this.poster = getColumnString(cursor, DatabaseContract.MoviesColumns.POSTER);
+        this.backdrop = getColumnString(cursor, DatabaseContract.MoviesColumns.BG);
+        this.title = getColumnString(cursor, DatabaseContract.MoviesColumns.TITLE);
+        this.releaseDate = getColumnString(cursor, DatabaseContract.MoviesColumns.RELEASEDATE);
+        this.voteAverage = getColumnString(cursor, DatabaseContract.MoviesColumns.VOTEAVERAGE);
+        this.language = getColumnString(cursor, DatabaseContract.MoviesColumns.LANGUAGE);
+        this.overview = getColumnString(cursor, DatabaseContract.MoviesColumns.OVERVIEW);
     }
 
     public static final Creator<MoviesAndTvData> CREATOR = new Creator<MoviesAndTvData>() {
@@ -34,16 +56,20 @@ public class MoviesAndTvData implements Parcelable {
         }
     };
 
-    public MoviesAndTvData() {
-
-    }
-
     public String getPoster() {
         return poster;
     }
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
     }
 
     public String getTitle() {
@@ -102,6 +128,7 @@ public class MoviesAndTvData implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(poster);
+        dest.writeString(backdrop);
         dest.writeString(title);
         dest.writeString(releaseDate);
         dest.writeString(voteAverage);

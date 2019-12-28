@@ -56,10 +56,11 @@ public class TvShowHelper {
                 moviesAndTvData.setId(cursor.getInt(0));
                 moviesAndTvData.setTitle(String.valueOf(cursor.getString(1)));
                 moviesAndTvData.setPoster(String.valueOf(cursor.getString(2)));
-                moviesAndTvData.setReleaseDate(String.valueOf(cursor.getString(3)));
-                moviesAndTvData.setVoteAverage(String.valueOf(cursor.getString(4)));
-                moviesAndTvData.setLanguage(String.valueOf(cursor.getString(5)));
-                moviesAndTvData.setOverview(String.valueOf(cursor.getString(6)));
+                moviesAndTvData.setBackdrop(String.valueOf(cursor.getString(3)));
+                moviesAndTvData.setReleaseDate(String.valueOf(cursor.getString(4)));
+                moviesAndTvData.setVoteAverage(String.valueOf(cursor.getString(5)));
+                moviesAndTvData.setLanguage(String.valueOf(cursor.getString(6)));
+                moviesAndTvData.setOverview(String.valueOf(cursor.getString(7)));
                 items.add(moviesAndTvData);
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
@@ -87,6 +88,7 @@ public class TvShowHelper {
         ContentValues args = new ContentValues();
         args.put(DatabaseContract.TvShowColumns.TITLE, moviesAndTvData.getTitle());
         args.put(DatabaseContract.TvShowColumns.POSTER, moviesAndTvData.getPoster());
+        args.put(DatabaseContract.TvShowColumns.BG, moviesAndTvData.getBackdrop());
         args.put(DatabaseContract.TvShowColumns.RELEASEDATE, moviesAndTvData.getReleaseDate());
         args.put(DatabaseContract.TvShowColumns.VOTEAVERAGE, moviesAndTvData.getVoteAverage());
         args.put(DatabaseContract.TvShowColumns.LANGUAGE, moviesAndTvData.getLanguage());

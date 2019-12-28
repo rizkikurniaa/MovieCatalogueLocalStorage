@@ -45,6 +45,7 @@ public class TvShowViewModel extends ViewModel {
                                     MoviesAndTvData tvshowItems = new MoviesAndTvData();
                                     tvshowItems.setTitle(data.getString("original_name"));
                                     tvshowItems.setPoster(data.getString("poster_path"));
+                                    tvshowItems.setBackdrop(data.getString("backdrop_path"));
                                     tvshowItems.setReleaseDate(data.getString("first_air_date"));
                                     tvshowItems.setVoteAverage(data.getString("vote_average"));
                                     tvshowItems.setLanguage(data.getString("original_language"));
@@ -89,6 +90,7 @@ public class TvShowViewModel extends ViewModel {
                                     MoviesAndTvData tvshowItems = new MoviesAndTvData();
                                     tvshowItems.setTitle(data.getString("original_name"));
                                     tvshowItems.setPoster(data.getString("poster_path"));
+                                    tvshowItems.setBackdrop(data.getString("backdrop_path"));
                                     tvshowItems.setReleaseDate(data.getString("first_air_date"));
                                     tvshowItems.setVoteAverage(data.getString("vote_average"));
                                     tvshowItems.setLanguage(data.getString("original_language"));

@@ -44,6 +44,7 @@ public class MoviesViewModel extends ViewModel {
                                     MoviesAndTvData movieItems = new MoviesAndTvData();
                                     movieItems.setTitle(data.getString("original_title"));
                                     movieItems.setPoster(data.getString("poster_path"));
+                                    movieItems.setBackdrop(data.getString("backdrop_path"));
                                     movieItems.setReleaseDate(data.getString("release_date"));
                                     movieItems.setVoteAverage(data.getString("vote_average"));
                                     movieItems.setLanguage(data.getString("original_language"));
@@ -87,6 +88,7 @@ public class MoviesViewModel extends ViewModel {
                                     MoviesAndTvData movieItems = new MoviesAndTvData();
                                     movieItems.setTitle(data.getString("original_title"));
                                     movieItems.setPoster(data.getString("poster_path"));
+                                    movieItems.setBackdrop(data.getString("backdrop_path"));
                                     movieItems.setReleaseDate(data.getString("release_date"));
                                     movieItems.setVoteAverage(data.getString("vote_average"));
                                     movieItems.setLanguage(data.getString("original_language"));

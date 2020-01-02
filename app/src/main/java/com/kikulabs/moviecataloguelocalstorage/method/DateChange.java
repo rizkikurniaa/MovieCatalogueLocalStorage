@@ -20,18 +20,9 @@ public class DateChange {
         return changeFormat;
     }
 
-    public static String getCurrentDates() {
+    public static String getToday() {
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(Calendar.getInstance().getTime());
     }
 
-    public String getLastYear(String setReleasedate) { //get year exp : (2018)
-        String releaseYear;
-        if (setReleasedate.length() >= 4) {
-            releaseYear = setReleasedate.substring(setReleasedate.length() - 4);
-        } else {
-            releaseYear = "****";
-        }
-        return releaseYear;
-    }
 }

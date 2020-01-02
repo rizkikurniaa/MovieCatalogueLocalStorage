@@ -24,6 +24,20 @@
     <string name="aboutmovies">Tentang Film</string>
     <string name="abouttvshow">Tentang Acara Tv</string>
     <string name="appwidget_text">Film Favorit Mu</string>
-    <string name="add_widget">Tambahkan Widget</string>
     <string name="empty_text">Tidak Ada Film</string>
+    <string name="change_language">Ubah Bahasa Aplikasi</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="reminder_for_return_to_app">Mengingatkan untuk kembali ke aplikasi</string>
+    <string name="reminder_released_today">Mengingatkan film yang rilis hari ini</string>
+    <string name="settings">Pengaturan</string>
+    <string name="content_title">Content title</string>
+    <string name="content_text">Content text</string>
+    <string name="subtext">Hai! Apa kabar?</string>
+    <string name="notif_mssg">Kami merindukan mu ❤</string>
+    <string name="daily_reminder_off">Pengingat harian dimatikan :(</string>
+    <string name="daily_reminder_on">Pengingat harian dinyalakan ❤ </string>
+    <string name="release_msg">rilis hari ini</string>
+    <string name="release_reminder_off">Pengingat rilis dimatikan :(</string>
+    <string name="release_reminder_on">Pengingat rilis dinyalakan ❤</string>
 </resources>

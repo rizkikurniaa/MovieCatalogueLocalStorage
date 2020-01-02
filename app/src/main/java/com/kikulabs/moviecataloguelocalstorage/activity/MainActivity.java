@@ -2,7 +2,6 @@ package com.kikulabs.moviecataloguelocalstorage.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_change_settings) {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            Intent mIntent = new Intent(this,SettingsActivity.class);
             startActivity(mIntent);
         }
         return super.onOptionsItemSelected(item);

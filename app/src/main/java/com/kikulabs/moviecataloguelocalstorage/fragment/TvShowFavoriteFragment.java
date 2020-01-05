@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kikulabs.moviecataloguelocalstorage.R;
 import com.kikulabs.moviecataloguelocalstorage.adapter.ListTvShowAdapter;
-import com.kikulabs.moviecataloguelocalstorage.database.LoadCallback;
+import com.kikulabs.moviecataloguelocalstorage.database.LoadCallBackTv;
 import com.kikulabs.moviecataloguelocalstorage.database.TvShowHelper;
 import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TvShowFavoriteFragment extends Fragment implements LoadCallback {
+public class TvShowFavoriteFragment extends Fragment implements LoadCallBackTv {
     private ListTvShowAdapter adapter;
     private ProgressBar progressBar;
     private RecyclerView recyclerTvShowFav;
@@ -91,9 +91,9 @@ public class TvShowFavoriteFragment extends Fragment implements LoadCallback {
 
     private static class LoadTvShowAsync extends AsyncTask<Void, Void, ArrayList<MoviesAndTvData>> {
         private final WeakReference<TvShowHelper> weakTvShowHelper;
-        private final WeakReference<LoadCallback> weakCallback;
+        private final WeakReference<LoadCallBackTv> weakCallback;
 
-        private LoadTvShowAsync(TvShowHelper tvShowHelper, LoadCallback callback) {
+        private LoadTvShowAsync(TvShowHelper tvShowHelper, LoadCallBackTv callback) {
             weakTvShowHelper = new WeakReference<>(tvShowHelper);
             weakCallback = new WeakReference<>(callback);
         }

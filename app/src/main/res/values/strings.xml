@@ -31,8 +31,6 @@
     <string name="reminder_released_today">Reminder showing the movie that released today</string>
     <string name="settings">Settings</string>
 
-    <string name="content_title">Content title</string>
-    <string name="content_text">Content text</string>
     <string name="subtext">Hi! How are you?</string>
     <string name="notif_mssg">We miss you ❤</string>
     <string name="daily_reminder_off">Daily reminder turned off :(</string>

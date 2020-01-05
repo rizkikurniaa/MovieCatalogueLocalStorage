@@ -11,13 +11,13 @@ import android.widget.RemoteViewsService;
 
 import com.bumptech.glide.Glide;
 import com.kikulabs.moviecataloguelocalstorage.R;
-import com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract;
 import com.kikulabs.moviecataloguelocalstorage.database.DatabaseHelper;
 import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.MoviesColumns.CONTENT_URI;
 import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.TABLE_MOVIES;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
@@ -47,13 +47,10 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         final long identifyToken = Binder.clearCallingIdentity();
 
         //querying
-        cursor = dataBaseHelper.getWritableDatabase().query(DATABASE_TABLE,
+        cursor = context.getContentResolver().query(CONTENT_URI,
                 null,
                 null,
                 null,
-                null,
-                null,
-                DatabaseContract.MoviesColumns._ID,
                 null);
 
         if (cursor != null) {

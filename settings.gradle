@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':favmov'
 rootProject.name='Movie Catalogue (Local Storage)'

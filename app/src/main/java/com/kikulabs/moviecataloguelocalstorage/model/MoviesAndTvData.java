@@ -10,31 +10,31 @@ import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.
 import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.getColumnString;
 
 public class MoviesAndTvData implements Parcelable {
+    private int id;
+    private String title;
     private String poster;
     private String backdrop;
-    private String title;
     private String releaseDate;
     private String voteAverage;
     private String language;
     private String overview;
-    private int id;
 
     protected MoviesAndTvData(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
         poster = in.readString();
         backdrop = in.readString();
-        title = in.readString();
         releaseDate = in.readString();
         voteAverage = in.readString();
         language = in.readString();
         overview = in.readString();
-        id = in.readInt();
     }
 
     public MoviesAndTvData() {
     }
 
     public MoviesAndTvData(Cursor cursor) {
-        this.id = getColumnInt(cursor, DatabaseContract.MoviesColumns._ID);
+        this.id = getColumnInt(cursor, DatabaseContract.MoviesColumns.ID);
         this.poster = getColumnString(cursor, DatabaseContract.MoviesColumns.POSTER);
         this.backdrop = getColumnString(cursor, DatabaseContract.MoviesColumns.BG);
         this.title = getColumnString(cursor, DatabaseContract.MoviesColumns.TITLE);
@@ -55,6 +55,26 @@ public class MoviesAndTvData implements Parcelable {
             return new MoviesAndTvData[size];
         }
     };
+
+    public MoviesAndTvData(int id, String title, String poster, String backdrop, String releaseDate, String voteAverage, String language, String overview) {
+        this.id = id;
+        this.title = title;
+        this.poster = poster;
+        this.backdrop = backdrop;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
+        this.language = language;
+        this.overview = overview;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPoster() {
         return poster;
@@ -112,13 +132,6 @@ public class MoviesAndTvData implements Parcelable {
         this.overview = overview;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public int describeContents() {
@@ -127,13 +140,13 @@ public class MoviesAndTvData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
         dest.writeString(poster);
         dest.writeString(backdrop);
-        dest.writeString(title);
         dest.writeString(releaseDate);
         dest.writeString(voteAverage);
         dest.writeString(language);
         dest.writeString(overview);
-        dest.writeInt(id);
     }
 }

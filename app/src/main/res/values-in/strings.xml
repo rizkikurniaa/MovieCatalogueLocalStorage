@@ -31,8 +31,6 @@
     <string name="reminder_for_return_to_app">Mengingatkan untuk kembali ke aplikasi</string>
     <string name="reminder_released_today">Mengingatkan film yang rilis hari ini</string>
     <string name="settings">Pengaturan</string>
-    <string name="content_title">Content title</string>
-    <string name="content_text">Content text</string>
     <string name="subtext">Hai! Apa kabar?</string>
     <string name="notif_mssg">Kami merindukan mu ❤</string>
     <string name="daily_reminder_off">Pengingat harian dimatikan :(</string>

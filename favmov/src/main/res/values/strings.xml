@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Movies</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_release">Movie release date</string>
+    <string name="vote">Rating</string>
+    <string name="tvshow_title">Tv Show Title</string>
+    <string name="tvshow_date">Release Date</string>
+    <string name="release_date">Release Date</string>
+    <string name="rating">Rating</string>
+    <string name="language">Language</string>
+    <string name="overview">Overview</string>
+</resources>

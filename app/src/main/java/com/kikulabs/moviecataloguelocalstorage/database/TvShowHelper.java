@@ -47,7 +47,7 @@ public class TvShowHelper {
 
     public ArrayList<MoviesAndTvData> getAllTvShow() {
         ArrayList<MoviesAndTvData> items = new ArrayList<>();
-        Cursor cursor = database.query(DATABASE_TABLE, null, null, null, null, null, DatabaseContract.TvShowColumns._ID, null);
+        Cursor cursor = database.query(DATABASE_TABLE, null, null, null, null, null, DatabaseContract.TvShowColumns.ID, null);
         cursor.moveToFirst();
         MoviesAndTvData moviesAndTvData;
         if (cursor.getCount() > 0) {

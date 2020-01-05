@@ -1,8 +1,13 @@
 package com.kikulabs.moviecataloguelocalstorage.fragment;
 
 
+import android.content.Context;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +27,9 @@ import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.MoviesColumns.CONTENT_URI;
+import static com.kikulabs.moviecataloguelocalstorage.database.MappingHelper.mapCursorToArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -32,6 +40,7 @@ public class MoviesFavoriteFragment extends Fragment implements LoadCallback {
     private TextView tvNoData;
     private MoviesHelper moviesHelper;
     private static final String EXTRA_STATE = "EXTRA_STATE";
+    private ArrayList<MoviesAndTvData> listMovies;
 
     public MoviesFavoriteFragment() {
         // Required empty public constructor
@@ -56,8 +65,17 @@ public class MoviesFavoriteFragment extends Fragment implements LoadCallback {
         moviesHelper = MoviesHelper.getInstance(getContext());
         moviesHelper.open();
 
+        HandlerThread handlerThread = new HandlerThread("DataObserver");
+        handlerThread.start();
+        Handler handler = new Handler(handlerThread.getLooper());
+        DataObserver myObserver = new DataObserver(handler, getContext());
+
+        if (getContext() != null) {
+            getContext().getContentResolver().registerContentObserver(CONTENT_URI, true, myObserver);
+        }
+
         if (savedInstanceState == null) {
-            new LoadMoviesAsync(moviesHelper, this).execute();
+            new LoadMoviesAsync(getContext(), this).execute();
         } else {
             ArrayList<MoviesAndTvData> list = savedInstanceState.getParcelableArrayList(EXTRA_STATE);
             if (list != null) {
@@ -78,10 +96,12 @@ public class MoviesFavoriteFragment extends Fragment implements LoadCallback {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void postExecute(ArrayList<MoviesAndTvData> moviesAndTvData) {
+    @Override
+    public void postExecute(Cursor cursor) {
         progressBar.setVisibility(View.INVISIBLE);
-        if (moviesAndTvData.size() > 0) {
-            adapter.setData(moviesAndTvData);
+        listMovies = mapCursorToArrayList(cursor);
+        if (listMovies.size() > 0) {
+            adapter.setData(listMovies);
             tvNoData.setVisibility(View.GONE);
         } else {
             adapter.setData(new ArrayList<MoviesAndTvData>());
@@ -89,12 +109,13 @@ public class MoviesFavoriteFragment extends Fragment implements LoadCallback {
         }
     }
 
-    private static class LoadMoviesAsync extends AsyncTask<Void, Void, ArrayList<MoviesAndTvData>> {
-        private final WeakReference<MoviesHelper> weakMoviesHelper;
+
+    private static class LoadMoviesAsync extends AsyncTask<Void, Void, Cursor> {
+        private final WeakReference<Context> weakContext;
         private final WeakReference<LoadCallback> weakCallback;
 
-        private LoadMoviesAsync(MoviesHelper moviesHelper, LoadCallback callback) {
-            weakMoviesHelper = new WeakReference<>(moviesHelper);
+        private LoadMoviesAsync(Context context, LoadCallback callback) {
+            weakContext = new WeakReference<>(context);
             weakCallback = new WeakReference<>(callback);
         }
 
@@ -105,14 +126,29 @@ public class MoviesFavoriteFragment extends Fragment implements LoadCallback {
         }
 
         @Override
-        protected ArrayList<MoviesAndTvData> doInBackground(Void... voids) {
-            return weakMoviesHelper.get().getAllMovies();
+        protected Cursor doInBackground(Void... voids) {
+            Context context = weakContext.get();
+            return context.getContentResolver().query(CONTENT_URI,
+                    null, null, null, null);
         }
 
         @Override
-        protected void onPostExecute(ArrayList<MoviesAndTvData> moviesAndTvData) {
-            super.onPostExecute(moviesAndTvData);
-            weakCallback.get().postExecute(moviesAndTvData);
+        protected void onPostExecute(Cursor cursor) {
+            super.onPostExecute(cursor);
+            weakCallback.get().postExecute(cursor);
+        }
+    }
+
+    public static class DataObserver extends ContentObserver {
+        final Context context;
+        public DataObserver(Handler handler, Context context) {
+            super(handler);
+            this.context = context;
+        }
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            new LoadMoviesAsync(context, (LoadCallback) context).execute();
         }
     }
 

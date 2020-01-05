@@ -7,6 +7,13 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <permission
+        android:name="com.kikulabs.moviecataloguelocalstorage.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.kikulabs.moviecataloguelocalstorage.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logomovie"
@@ -15,7 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.SettingsActivity"></activity>
+
+        <provider
+            android:name=".provider.MoviesFavoriteProvider"
+            android:authorities="com.kikulabs.moviecataloguelocalstorage"
+            android:exported="true"
+            android:readPermission="com.kikulabs.moviecataloguelocalstorage.READ_DATABASE"
+            android:writePermission="com.kikulabs.moviecataloguelocalstorage.WRITE_DATABASE" />
+
+        <activity android:name=".activity.SettingsActivity" />
 
         <receiver android:name=".stackwidget.ImageBannerWidget">
             <intent-filter>
@@ -35,7 +50,6 @@
             android:name=".reminder.DailyReminder"
             android:enabled="true"
             android:exported="true" />
-
         <receiver
             android:name=".reminder.ReleaseReminder"
             android:enabled="true"
@@ -54,6 +68,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
 
 import java.util.ArrayList;
 
+import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.MoviesColumns.ID;
 import static com.kikulabs.moviecataloguelocalstorage.database.DatabaseContract.TABLE_MOVIES;
 
 public class MoviesHelper {
@@ -84,6 +85,26 @@ public class MoviesHelper {
         return false;
     }
 
+    public Cursor getByIdProvider(String id) {
+        return database.query(DATABASE_TABLE, null,
+                ID + " = ?",
+                new String[]{id},
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public Cursor getAllMoviesProvider() {
+        return database.query(DATABASE_TABLE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                ID + " ASC");
+    }
+
     public long addMovies(MoviesAndTvData moviesAndTvData) {
         ContentValues args = new ContentValues();
         args.put(DatabaseContract.MoviesColumns.TITLE, moviesAndTvData.getTitle());
@@ -98,5 +119,17 @@ public class MoviesHelper {
 
     public int deleteMovies(String title) {
         return database.delete(TABLE_MOVIES, DatabaseContract.MoviesColumns.TITLE + " = " + "'" + title + "'", null);
+    }
+
+    public long insertProvider(ContentValues values) {
+        return database.insert(DATABASE_TABLE, null, values);
+    }
+
+    public int updateProvider(String id, ContentValues values) {
+        return database.update(DATABASE_TABLE, values, ID + " = ?", new String[]{id});
+    }
+
+    public int deleteProvider(String id) {
+        return database.delete(DATABASE_TABLE, ID + " = ?", new String[]{id});
     }
 }

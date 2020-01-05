@@ -1,11 +1,8 @@
 package com.kikulabs.moviecataloguelocalstorage.database;
 
-import com.kikulabs.moviecataloguelocalstorage.model.MoviesAndTvData;
-
-import java.util.ArrayList;
+import android.database.Cursor;
 
 public interface LoadCallback {
     void preExecute();
-
-    void postExecute(ArrayList<MoviesAndTvData> moviesAndTvData);
+    void postExecute(Cursor cursor);
 }
